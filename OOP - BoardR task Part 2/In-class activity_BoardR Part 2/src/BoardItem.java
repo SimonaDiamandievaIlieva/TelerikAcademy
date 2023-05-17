@@ -12,7 +12,7 @@ public class BoardItem {
     private static final String TITLE_CHANGED = "Title changed from %s to %s";
     private static final String DATE_ERROR = "Date should not be in the past.";
     private static final String DATE_CHANGED = "DueDate changed from %s to %s";
-    public static final String STATUS_CHANGED_PREVIOUS = "Status changed from %s to %s";
+    private static final String STATUS_CHANGED_PREVIOUS = "Status changed from %s to %s";
     private String title;
     private LocalDate dueDate;
     private Enums status;
