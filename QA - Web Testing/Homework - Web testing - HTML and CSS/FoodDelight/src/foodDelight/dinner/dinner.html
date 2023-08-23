@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Dinners for winners</title>
+  <link rel="stylesheet" href="dinnerStyles.css">
+</head>
+<body>
+<header>
+  <h1>Fabulous Dinner For Fabulous People</h1>
+  <nav>
+    <ul class="nav-list">
+      <li><a class="button" href="../homePage.html">Home</a></li>
+      <li><a href="fabulousdinnerforfabulouspeople.html"></a></li>
+    </ul>
+  </nav>
+</header>
+<div class="container">
+  <h1></h1>
+  <h3> A little info about the author: Hello, everyone. My name is Simona, and I've been a master chef for about two days
+    (starting from the date of the  HTML challenge).
+    Today, I am delighted to present to you the fanciest dinner I am capable of creating.
+    Aaaand the winner is ... French Fried Potatoes </h3>
+  <p id="additional"> The best potatoes for French fries are soaked in a sugar solution before frying.
+    The sugar solution has something to do with the carbohydrates and prevents the potatoes from soaking up a lot of grease, so they get crunchy. </p>
+  <h2>Here are the ingredients:</h2>
+  <ul>
+    <li>* 2 cups warm water</li>
+    <li>* ⅓ cup white sugar</li>
+    <li>* 2 large russet potatoes - peeled, and sliced into 1/4 inch strips</li>
+    <li>* 6 cups vegetable oil for frying</li>
+    <li>* salt to taste</li>
+  </ul>
+  <h2>Instructions:</h2>
+  <ol>
+    <li>
+      <div class="steps-container">
+        <div class="step-number">Step 1:</div>
+        <div class="step-description">Stir together warm water and sugar in a medium bowl. Soak potatoes in water mixture for 15 minutes.
+          Remove potatoes from water and dry thoroughly on paper towels.</div>
+      </div>
+    </li>
+    <li>
+      <div class="steps-container">
+        <div class="step-number">Step 2:</div>
+        <div class="step-description">Heat oil in a deep-fryer to 375 degrees F (190 degrees C).</div>
+      </div>
+    </li>
+    <li>
+      <div class="steps-container">
+        <div class="step-number">Step 3:</div>
+        <div class="step-description">Cook potatoes in hot oil until golden, 5 to 6 minutes. Drain on paper towels and season with salt.</div>
+      </div>
+    </li>
+    <li>
+      <div class="steps-container">
+        <div class="step-number">Step 4:</div>
+        <div class="step-description">Eat everything you cooked, drink a beer and enjoy life.</div>
+      </div>
+    </li>
+  </ol>
+  <br>
+  <p id="client">Here's what a happy followers look like, who has benefited from my knowledge and skills.</p>
+  <div class="slideshow-container">
+
+    <div class="mySlides fade">
+      <div class="numbertext"></div>
+      <img src="https://st5.depositphotos.com/2024219/66093/i/450/depositphotos_660930018-stock-photo-young-arabian-handsome-man-holding.jpg"
+           width="500" alt = "Happy person 1">
+    </div>
+
+    <div class="mySlides fade">
+      <div class="numbertext"></div>
+      <img src="https://previews.123rf.com/images/ljupco/ljupco1608/ljupco160800140/61582996-happy-senior-man-eating-fries-isolated-on-white-background.jpg"
+           width="500" alt = "Happy person 2">
+    </div>
+
+    <div class="mySlides fade">
+      <div class="numbertext"></div>
+      <img src="http://i1.tribune.com.pk/wp-content/uploads/2015/09/97762428.jpg"
+           width="500" alt = "Happy person 3">
+    </div>
+
+    <!-- Next and previous buttons -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
+  <br>
+
+  <!-- The dots/circles -->
+  <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+  </div>
+<script>let slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}</script>
+  <br>
+  <p id="final">Follow me for more recipes and don't forget to like and share. :) </p>
+  <p>You can visit my <b><a href="https://www.youtube.com/watch?v=AF5qxJTb0k8"
+                    target="_blank" alt="video clip">YouTube</a></b> channel for more details!</p>
+  <button class="button1">Follow me</button>
+  <button class="button2">Like</button>
+  <button class="button3">Share</button>
+</div>
+<footer>
+  <p>&copy; 2023 Recipe for dinner</p>
+</footer>
+</body>
+</html>

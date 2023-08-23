@@ -1,0 +1,431 @@
+{
+	"info": {
+		"_postman_id": "49c2cf31-a576-4858-8673-f9c8f973932c",
+		"name": "Trello",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28722613"
+	},
+	"item": [
+		{
+			"name": "Validate initial set up_Task1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var response = pm.response.json();\r",
+							"console.log(response);\r",
+							"var bodyData = response.data;\r",
+							"console.log(bodyData);\r",
+							"\r",
+							"pm.test(\"Avatar and status information is correct\", function () {\r",
+							"    pm.expect(pm.response.json().fullName).to.eql(\"Simona Diamandieva-Ilieva\");\r",
+							"    pm.expect(pm.response.json().initials).to.eql(\"SD\");\r",
+							"    pm.expect(pm.response.json().avatarUrl).to.eql(\"https://trello-members.s3.amazonaws.com/64d3b28dd230be06f1097806/75b09b0dcacc4e1e80e63c1858737427\");\r",
+							"    pm.expect(pm.response.json().status).to.eql(\"disconnected\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Membership and access details are accurate\", function () {\r",
+							"    pm.expect(pm.response.json().memberType).to.eql(\"normal\");\r",
+							"    pm.expect(pm.response.json().confirmed).to.eql(true);\r",
+							"    pm.expect(pm.response.json().idEnterprise).to.be.null;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is not empty\", function () {\r",
+							"   pm.response.to.be.withBody;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/1/members/me?key={{trello_key}}&token={{trello_token}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"1",
+						"members",
+						"me"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{trello_key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{trello_token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Limits are empty\", function () {\r",
+							"    const limits = pm.response.json().limits;\r",
+							"\r",
+							"    pm.expect(limits).to.eql({});\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is not empty\", function () {\r",
+							"   pm.response.to.be.withBody;\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"boardId\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/1/boards/?name={{name}}&key={{trello_key}}&token={{trello_token}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"1",
+						"boards",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{name}}"
+						},
+						{
+							"key": "key",
+							"value": "{{trello_key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{trello_token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a list on a board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Details are correct\", function () {\r",
+							"    const responseBody = pm.response.json();\r",
+							"    pm.expect(responseBody.name).to.eql(\"Task1\");\r",
+							"   \r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"listId\", jsonData.id);\r",
+							"\r",
+							"pm.test(\"Response body is not empty\", function () {\r",
+							"   pm.response.to.be.withBody;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/1/boards/{{boardId}}/lists?name={{name}}&key={{trello_key}}&token={{trello_token}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"1",
+						"boards",
+						"{{boardId}}",
+						"lists"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{name}}"
+						},
+						{
+							"key": "key",
+							"value": "{{trello_key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{trello_token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"cardId\", jsonData.id);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is not empty\", function () {\r",
+							"   pm.response.to.be.withBody;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/1/cards?idList={{listId}}&key={{trello_key}}&token={{trello_token}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"1",
+						"cards"
+					],
+					"query": [
+						{
+							"key": "idList",
+							"value": "{{listId}}"
+						},
+						{
+							"key": "key",
+							"value": "{{trello_key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{trello_token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is not empty\", function () {\r",
+							"   pm.response.to.be.withBody;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert card Id is\" + pm.variables.get(\"cardId\"), function(){\r",
+							"    var body = pm.response.json();\r",
+							"    pm.expect(body.id).to.eql(pm.variables.get(\"cardId\"));\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/1/cards/{{cardId}}?key={{trello_key}}&token={{trello_token}}&name=newName",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"1",
+						"cards",
+						"{{cardId}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{trello_key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{trello_token}}"
+						},
+						{
+							"key": "name",
+							"value": "newName"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a card with cover color",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is not empty\", function () {\r",
+							"   pm.response.to.be.withBody;\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cover\": {\r\n        \"color\": \"red\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/1/cards/{{cardId}}?key={{trello_key}}&token={{trello_token}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"1",
+						"cards",
+						"{{cardId}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{trello_key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{trello_token}}"
+						},
+						{
+							"key": "name",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "ATTAa3112a0a7769db3dfef90ac7b0e750d22862a6d97cbaa016bee1943dbd97100440A40B4E"
+		},
+		{
+			"key": "trello_key",
+			"value": "bda449e959238bff2e291e82a7436de7"
+		},
+		{
+			"key": "trello_token",
+			"value": "ATTAa3112a0a7769db3dfef90ac7b0e750d22862a6d97cbaa016bee1943dbd97100440A40B4E"
+		},
+		{
+			"key": "name",
+			"value": "Task1"
+		},
+		{
+			"key": "boardId",
+			"value": ""
+		},
+		{
+			"key": "idList",
+			"value": "5abbe4b7ddc1b351ef961414"
+		},
+		{
+			"key": "listId",
+			"value": ""
+		},
+		{
+			"key": "cardId",
+			"value": ""
+		}
+	]
+}

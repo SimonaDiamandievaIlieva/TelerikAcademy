@@ -1,0 +1,227 @@
+body {
+    background-color: rgb(199, 190, 162);
+    color: black; /* Set all text color to black */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background-color: rgb(229, 220, 195);
+    color: rgb(154, 148, 131);
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px; /* Set a desired height for the header */
+}
+
+/* Footer */
+footer{
+    background-color: rgb(154, 148, 131);
+    color: black;
+    padding: 10px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav li {
+    display: inline;
+    margin-right: 10px;
+}
+
+/* Navigation Links */
+nav a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+/* Container Background */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgb(170, 164, 146);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px rgb(154, 148, 131);
+}
+
+h2 {
+    color: black;
+}
+
+p {
+    line-height: 1.6;
+}
+
+#additional {
+    color: black;
+}
+
+#final {
+    color: black;
+}
+
+/* Buttons */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: white;
+    border: 2px solid #325c2a;
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 8px 9px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button1 {border-radius: 50%;}
+.button2 {border-radius: 50%;}
+.button3 {border-radius: 50%;}
+
+.button1:hover {
+    background-color: DarkOrange;
+    color: #325c2a;
+}
+
+.button2:hover {
+    background-color: pink;
+    color: #325c2a;
+}
+
+.button3:hover {
+    background-color: PowderBlue;
+    color: white;
+}
+
+/* Instructions in table */
+ol {
+    display: table;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    display: table-row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.steps-container {
+    display: table-cell;
+    padding: 10px;
+    border: 1px solid #ccc;
+    vertical-align: top;
+}
+
+.step-number {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.step-description {
+    margin: 0;
+}
+
+/* Slideshow */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+    /* Hide the images by default */
+    .mySlides {
+      display: none;
+      margin: auto;
+      text-align: center;
+    }
+
+    /* Next & previous buttons */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      margin-top: -22px;
+      padding: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover, .next:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Caption text */
+    .text {
+      color: black;
+      font-size: 15px;
+      padding: 8px 12px;
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+      color: #f2f2f2;
+      font-size: 12px;
+      padding: 8px 12px;
+      position: absolute;
+      top: 0;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+
+    .active, .dot:hover {
+      background-color: #717171;
+    }
+
+    /* Fading animation */
+    .fade {
+      animation-name: fade;
+      animation-duration: 1.5s;
+    }
+
+    @keyframes fade {
+      from { opacity: .4 }
+      to { opacity: 1 }
+    }

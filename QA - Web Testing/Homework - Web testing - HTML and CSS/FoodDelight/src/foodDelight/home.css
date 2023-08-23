@@ -1,0 +1,186 @@
+/* Common styles for all pages */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+.button {
+  border: none;
+  color: #C71585;
+  background-color: pink;
+  padding: 10px 20px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 4px 4px;
+  cursor: pointer;
+}
+
+header, footer {
+    background-color: #341;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    background-color: #eee;
+}
+
+/* Center buttons */
+ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Additional styles for personal pages */
+main {
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+
+    .centered-image {
+        display: block;
+        margin: auto;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    
+}
+
+/* Homepage styles */
+h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+nav ul li a:hover {
+    color: #555;
+}
+
+/* Hover effect for buttons */
+button:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+nav ul li a:hover {
+    color: #555; /* Change text color on hover */
+}
+
+button:hover {
+    background-color: #333; /* Change background color on hover */
+    color: #fff; /* Change text color on hover */
+}
+
+/* Common hover effect */
+nav ul li a:hover,
+button:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Update font sizes */
+h1 {
+    font-size: 48px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto; /* Center the container */
+    padding: 30px;
+}
+
+button {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.chef-team {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 80px 0;
+  background-color: #f5f5f5;
+}
+
+/* Make chef's images and description */
+.chef {
+  text-align: center;
+  width: calc(33.33% - 20px);
+  margin-bottom: 40px;
+}
+.chef:nth-child(4),
+.chef:nth-child(5) {
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chef img {
+  max-width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.chef h2 {
+  margin-top: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.chef p {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #777;
+}
+
+/* Center and bold id team */
+#team {
+  text-align: center;
+  font-weight: bold;
+}

@@ -1,0 +1,350 @@
+{
+	"info": {
+		"_postman_id": "8f32bfe3-5b6c-4799-8f57-f8407cfbba41",
+		"name": "Jira API Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28722613"
+	},
+	"item": [
+		{
+			"name": "Create Story in Jira",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"var key = jsonData.key;\r",
+							"pm.globals.set(\"storyKey\", key);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"QA-\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Id returned in response\", function() {\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.expect(jsonData.id).is.not.null;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"project\": {\r\n            \"key\": \"{{projectKey}}\"\r\n        },\r\n        \"issuetype\": {\r\n            \"name\": \"Story\"\r\n        },\r\n        \"summary\": \"Try to receive information about the site\",\r\n        \"description\": \"*Description:*\\n As a user I want to see information about the company from their website.\\n *Preconditions:*\\n Navigate to https://www.phptravels.net/ru \\n *Test Steps:*\\n 1. Scroll to the bottom of the homepage. \\n 2. Click on “About Us”. \\n 3. The page is redirected to https://www.phptravels.net/About-Us \\n  *Expected result:*\\n A page with information about the company is displayed.\",\r\n        \"priority\": {\r\n            \"name\": \"Medium\"\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/rest/api/2/issue",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a bug in Jira",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"QA-\");\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"var key = jsonData.key;\r",
+							"pm.globals.set(\"bugKey\", key);\r",
+							"\r",
+							"pm.test(\"Id returned in response\", function() {\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.expect(jsonData.id).is.not.null;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"project\": {\r\n            \"key\": \"{{projectKey}}\"\r\n        },\r\n        \"issuetype\": {\r\n            \"name\": \"Bug\"\r\n        },\r\n       \"summary\": \"About Us information page in Russian version is empty \",\r\n        \"description\": \"*Description:*\\n As a user I want to see information about the company from their website. \\n *Preconditions:*\\n  Browser: Mozilla Firefox 2019 08 10 10 11 28 \\n *Steps to reproduce:*\\n 1. Navigate to https://www.phptravels.net/ru \\n 2. Scroll to the bottom of the homepage. \\n 3. Click on “About Us”. \\n 4. The page is redirected to https://www.phptravels.net/About-Us \\n *Expected result:*\\n A page with information about the company is displayed. \\n *Actual result:*\\n There is no information about the company on their website. The page is empty. \\n *Severity* High\",\r\n        \"priority\": {\r\n            \"name\": \"High\",\r\n            \"iconUrl\": \"https://xray-demo-project1.atlassian.net/images/icons/priorities/medium.svg\"\r\n        }\r\n}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/rest/api/2/issue",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Link the bug to the story",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"There is no response body\", function(){\r",
+							"    var res = (_.isEmpty(pm.response.body));\r",
+							"    pm.expect(res).to.be.true\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": {\r\n        \"id\": \"10000\"\r\n    },\r\n    \"inwardIssue\": {\r\n        \"key\": \"{{bugKey}}\"\r\n    },\r\n    \"outwardIssue\": {\r\n        \"key\": \"{{storyKey}}\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/rest/api/2/issueLink",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issueLink"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add attachment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check mimeType\", function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"pm.expect(jsonData[0].mimeType).to.eql(\"image/jpeg\");\r",
+							"});  \r",
+							"\r",
+							"pm.test(\"Check emailAddress\", function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"pm.expect(jsonData[0].emailAddress).to.eql(pm.collectionVariables.get(\"email\"));\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Check file name\", function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"pm.expect(jsonData[0].emailAddress).to.eql(pm.collectionVariables.get(\"filename\"));\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Check display name\", function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"pm.expect(jsonData[0].emailAddress).to.eql(pm.collectionVariables.get(\"displayName\"));\r",
+							"}); \r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Atlassian-Token",
+						"value": "no-check",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/user/Desktop/TelerikAcademy/OOP par 1 - in-class activity/QA/Defect manegment - bug reports/Нова папка/image.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/rest/api/2/issue/{{bugKey}}/attachments",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{bugKey}}",
+						"attachments"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "ATATT3xFfGF0xXeUbRX0VDZUAjdPULibDve834tStJ4zJXqmCR8KRc81FmHEUlzBBJhK6JHyuNn5_MdnPw-4OgK1Xv4nWW93-sTQDaWSQyQPTPYHBjyLiTc3gOpA2bh4b5YkbzdwjHkAWcEFJm0vG2g6Rp_t2m2fRuOqUH2VjllBpI0TaTyvhWQ=E652603A",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "simona_diamandieva@abv.bg",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "keyStory",
+			"value": "QA-26",
+			"type": "string"
+		},
+		{
+			"key": "keyBug",
+			"value": "QA-27",
+			"type": "string"
+		},
+		{
+			"key": "accountId",
+			"value": ""
+		}
+	]
+}
