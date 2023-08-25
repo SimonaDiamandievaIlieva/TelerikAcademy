@@ -4,16 +4,13 @@ import org.junit.jupiter.api.AfterAll;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BaseSetUp {
-    static final String SEARCH_BUTTON_DOES_NOT_DISPLAY = "Search button doesn't display";
-    static final String ACADEMY_ALPHA = "IT Career Start in 6 Months - Telerik Academy Alpha";
-    static final String SEARCH_RESULT_IS_NOT_FOUND = "Search result is not found.";
-
-    static final String INPUT = "Telerik Academy Alpha";
+public class BaseSetUp implements Constants{
     static WebDriver driver;
     static WebDriverWait wait;
 
@@ -21,7 +18,9 @@ public class BaseSetUp {
         FIREFOX,
         FIREFOX_HEADLESS,
         CHROME,
-        CHROME_HEADLESS
+        CHROME_HEADLESS,
+        EDGE,
+        EDGE_HEADLESS
     }
 
     static WebDriver startBrowser(BrowserTypes browserTypes) {
@@ -38,10 +37,15 @@ public class BaseSetUp {
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.addArguments("--headless");
                 return new FirefoxDriver(firefoxOptions);
+            case EDGE:
+                return new EdgeDriver();
+            case EDGE_HEADLESS:
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--headless");
+                return new EdgeDriver(edgeOptions);
         }
         return null;
     }
-
 
     @AfterAll
     public static void classTearDown() {
