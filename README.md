@@ -18,7 +18,7 @@ Here are some of the key contents in this repository:
 
 - **[QA Web Testing]**
 
--**[Final Project]**
+- **[Final Project]**
 
 ## Purpose of this Repository
 
