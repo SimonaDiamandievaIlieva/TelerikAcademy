@@ -42,7 +42,6 @@ If you have any questions or would like to get in touch with me, you can reach o
 
 Thank you for visiting my repository, and I hope you find it helpful and informative.
 
-Happy learning!
 
 Sincerely,
 Simona Diamandieva-Ilieva
