@@ -12,13 +12,13 @@ This repository contains subdirectories for different courses or modules that I 
 
 Here are some of the key contents in this repository:
 
+- **[Final Project]**
+- 
 - **[Java]**
 
 - **[QA Fundamentals]**
 
 - **[QA Web Testing]**
-
-- **[Final Project]**
 
 ## Purpose of this Repository
 
