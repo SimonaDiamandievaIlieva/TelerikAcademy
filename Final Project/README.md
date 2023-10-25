@@ -64,9 +64,9 @@ Please ensure that you fulfill all the prerequisites and project-specific requir
 
 <h3>VII. Authors</h3>
 
-- *Simona Diamandieva-Ilieva* - [github](https://github.com/SimonaDiamandievaIlieva)
+- *Simona Diamandieva-Ilieva* 
 
-- *Petar Hlebarov* - [github](https://github.com/petarhlebaroff)
+- *Petar Hlebarov* 
 
-- *Simeon Velinov* - [github](https://github.com/SimeonVelinov/General)
+- *Simeon Velinov* 
 
